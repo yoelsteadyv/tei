@@ -46,23 +46,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php $no = 1; @endphp
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>BRG-{{ rand(1000000000, 9999999999) }}</td>
-                            <td>RM 04 J A 33 OHM</td>
-                            <td>200</td>
-                            <td>150</td>
-                            <td>{{ 200 - 150 }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>BRG-{{ rand(1000000000, 9999999999) }}</td>
-                            <td>RM 87 L K 20 OHM</td>
-                            <td>350</td>
-                            <td>150</td>
-                            <td>{{ 350 - 150 }}</td>
-                        </tr>
+                        @foreach ($datas['barang'] as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->kode_barang }}</td>
+                                <td>{{ $item->nama_barang }}</td>
+                                <td>{{ $item->masuk }}</td>
+                                <td>{{ $item->keluar }}</td>
+                                <td>{{ $item->masuk - $item->keluar }}</td>
+                            </tr>
+                        @endforeach
 
                     </tbody>
                 </table>

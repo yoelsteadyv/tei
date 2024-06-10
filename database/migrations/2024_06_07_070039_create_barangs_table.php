@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('nama_barang')->nullable();
             $table->string('jenis_barang');
             $table->string('satuan');
-            $table->integer('harga');
+            $table->integer('stok')->default(0);
+            $table->integer('masuk')->default(0);
+            $table->integer('keluar')->default(0);
             $table->timestamps();
         });
     }

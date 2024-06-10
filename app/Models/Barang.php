@@ -13,6 +13,8 @@ class Barang extends Model
         'nama_barang',
         'jenis_barang',
         'satuan',
-        'harga',
+        'stok',
+        'masuk',
+        'keluar',
     ];
 }

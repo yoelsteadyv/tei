@@ -12,6 +12,7 @@ use App\Http\Controllers\MainCustomerController;
 use App\Http\Controllers\MainSupplierController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\SesiController;
+use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -158,6 +159,7 @@ Route::get('/laporankeluar', function () {
     }
     return app(LapBarangKeluarController::class)->index();
 });
+Route::get('/stok', fn () => app(StokController::class)->index());
 
 
 // Route::get('/laporanmasuk', function () {
@@ -167,9 +169,9 @@ Route::get('/laporankeluar', function () {
 // Route::get('/laporankeluar', function () {
 //     return view('page.laporan.laporankeluar.index');
 // });
-Route::get('/stok', function () {
-    return view('page.laporan.stok.index');
-});
+// Route::get('/stok', function () {
+//     return view('page.laporan.stok.index');
+// });
 // Route::get('/barangmasuk/tambah', function () {
 //     return view('page.barangmasuk.tambah');
 // });

@@ -28,7 +28,8 @@
                                                             <label for="first-name-column" class="form-label">
                                                                 Kode Barang Keluar</label>
                                                             <div class="form-group ">
-                                                                <input disabled type="text" class="form-control"
+                                                                <input readonly type="text" name="kode_barang_keluar"
+                                                                    class="form-control"
                                                                     value="{{ $item->kode_barang_keluar }}">
                                                             </div>
                                                         </div>
@@ -40,6 +41,7 @@
                                                             <div class="form-group ">
                                                                 <input type="date"
                                                                     class="form-control flatpickr-no-config"
+                                                                    name="tgl_keluar"
                                                                     placeholder="{{ $item->tgl_keluar }}"
                                                                     data-parsley-required="true"
                                                                     value="{{ $item->tgl_keluar }}">
@@ -51,8 +53,8 @@
                                                             <label for="customer" class="form-label">
                                                                 Customer</label>
                                                             <div class="form-group">
-                                                                <select class="choices form-select" name="customer" id="customer"
-                                                                    data-parsley-required="true">
+                                                                <select class="choices form-select" name="customer"
+                                                                    id="customer" data-parsley-required="true">
                                                                     <option hidden value="{{ $item->customer }}">
                                                                         {{ $item->customer }}</option>
                                                                     @foreach ($customer as $item)
@@ -67,7 +69,7 @@
                                                         <div class="form-group">
                                                             <label for="tujuan" class="form-label">Alamat
                                                                 Tujuan</label>
-                                                            <textarea readonly class="form-control" id="tujuan" rows="3">{{ $item->tujuan }}</textarea>
+                                                            <textarea readonly class="form-control" name="tujuan" id="tujuan" rows="3">{{ $item->tujuan }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -159,87 +161,87 @@
         </div>
     </div>
     </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var kodeBarangElement = document.getElementById('kode_barang');
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var kodeBarangElement = document.getElementById('kode_barang');
 
-        kodeBarangElement.addEventListener('change', function() {
-            var kodeBarang = kodeBarangElement.value;
+            kodeBarangElement.addEventListener('change', function() {
+                var kodeBarang = kodeBarangElement.value;
 
-            if (kodeBarang) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", '/barang/' + kodeBarang, true);
-                xhr.responseType = 'json';
+                if (kodeBarang) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", '/barang/' + kodeBarang, true);
+                    xhr.responseType = 'json';
 
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        var data = xhr.response;
-                        if (data) {
-                            document.getElementById('nama_barang').value = data.nama_barang;
-                            document.getElementById('jenis_barang').value = data.jenis_barang;
-                            document.getElementById('satuan').value = data.satuan;
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            var data = xhr.response;
+                            if (data) {
+                                document.getElementById('nama_barang').value = data.nama_barang;
+                                document.getElementById('jenis_barang').value = data.jenis_barang;
+                                document.getElementById('satuan').value = data.satuan;
+                            } else {
+                                document.getElementById('nama_barang').value = '';
+                                document.getElementById('jenis_barang').value = '';
+                                document.getElementById('satuan').value = '';
+                            }
                         } else {
                             document.getElementById('nama_barang').value = '';
                             document.getElementById('jenis_barang').value = '';
                             document.getElementById('satuan').value = '';
                         }
-                    } else {
+                    };
+
+                    xhr.onerror = function() {
                         document.getElementById('nama_barang').value = '';
                         document.getElementById('jenis_barang').value = '';
                         document.getElementById('satuan').value = '';
-                    }
-                };
+                    };
 
-                xhr.onerror = function() {
+                    xhr.send();
+                } else {
                     document.getElementById('nama_barang').value = '';
                     document.getElementById('jenis_barang').value = '';
                     document.getElementById('satuan').value = '';
-                };
-
-                xhr.send();
-            } else {
-                document.getElementById('nama_barang').value = '';
-                document.getElementById('jenis_barang').value = '';
-                document.getElementById('satuan').value = '';
-            }
+                }
+            });
         });
-    });
 
-    document.addEventListener("DOMContentLoaded", function() {
-    // Handle customer change
-    var customerElement = document.getElementById('customer');
+        document.addEventListener("DOMContentLoaded", function() {
+            // Handle customer change
+            var customerElement = document.getElementById('customer');
 
-    customerElement.addEventListener('change', function() {
-        var customer = customerElement.value;
+            customerElement.addEventListener('change', function() {
+                var customer = customerElement.value;
 
-        if (customer) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", '/maincustomer/' + customer, true);
-            xhr.responseType = 'json';
+                if (customer) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", '/maincustomer/' + customer, true);
+                    xhr.responseType = 'json';
 
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    var data = xhr.response;
-                    console.log(data);
-                    if (data) {
-                        document.getElementById('tujuan').value = data.alamat;
-                    } else {
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            var data = xhr.response;
+                            console.log(data);
+                            if (data) {
+                                document.getElementById('tujuan').value = data.alamat;
+                            } else {
+                                document.getElementById('tujuan').value = '';
+                            }
+                        } else {
+                            document.getElementById('tujuan').value = '';
+                        }
+                    };
+
+                    xhr.onerror = function() {
                         document.getElementById('tujuan').value = '';
-                    }
+                    };
+
+                    xhr.send();
                 } else {
                     document.getElementById('tujuan').value = '';
                 }
-            };
-
-            xhr.onerror = function() {
-                document.getElementById('tujuan').value = '';
-            };
-
-            xhr.send();
-        } else {
-            document.getElementById('tujuan').value = '';
-        }
-    });
-});
-</script>
+            });
+        });
+    </script>
 @endforeach

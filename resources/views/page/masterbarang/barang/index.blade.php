@@ -24,7 +24,6 @@
                             <th>Nama Barang</th>
                             <th>Jenis</th>
                             <th>Satuan</th>
-                            <th>Harga</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,7 +34,6 @@
                                 <td>{{ $item->nama_barang }}</td>
                                 <td>{{ $item->jenis_barang }}</td>
                                 <td>{{ $item->satuan }}</td>
-                                <td>{{ $item->harga }}</td>
                                 <td>
                                     <div class="d-flex gap-2 ">
                                         <button data-bs-toggle="modal"

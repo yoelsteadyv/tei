@@ -83,7 +83,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12">
+                                                    {{-- <div class="col-12">
                                                         <div class="form-group mandatory">
                                                             <label for="harga" class="form-label">
                                                                 Harga</label>
@@ -92,7 +92,7 @@
                                                                 value="{{ $item->harga }}"
                                                                 data-parsley-required="true" />
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
                                                 </div>
 

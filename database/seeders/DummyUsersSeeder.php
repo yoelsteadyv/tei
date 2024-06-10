@@ -15,29 +15,12 @@ class DummyUsersSeeder extends Seeder
     {
         $userData = [
             [
-                "name" => 'admin',
-                "email" => 'admin@gmail.com',
+                "name" => 'Yoel Steady Valentino',
+                "email" => 'yoelsteadyv@gmail.com',
                 "role" => 'admin',
-                "password" => bcrypt('123456'),
+                "password" => bcrypt('123'),
             ],
-            [
-                "name" => 'manager',
-                "email" => 'manager@gmail.com',
-                "role" => 'manager',
-                "password" => bcrypt('123456'),
-            ],
-            [
-                "name" => 'material',
-                "email" => 'material@gmail.com',
-                "role" => 'material',
-                "password" => bcrypt('123456'),
-            ],
-            [
-                "name" => 'marketing',
-                "email" => 'marketing@gmail.com',
-                "role" => 'marketing',
-                "password" => bcrypt('123456'),
-            ],
+
         ];
         foreach ($userData as $key => $value) {
             User::create($value);

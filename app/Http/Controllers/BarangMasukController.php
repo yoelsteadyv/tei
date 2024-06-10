@@ -42,7 +42,6 @@ class BarangMasukController extends Controller
      */
     public function store(Request $request)
     {
-
         $barang_masuk = [
             'tgl_masuk' => $request->input('tgl_masuk'),
             'kode_barang_masuk' => $request->input('kode_barang_masuk'),
@@ -51,7 +50,11 @@ class BarangMasukController extends Controller
             'barang' => $request->input('barang'),
             'jumlah_masuk' => $request->input('jumlah_masuk'),
         ];
-        // dd($barang_masuk);
+
+        $barang = Barang::where('nama_barang', $request->input('barang'))->first();
+        $barang->masuk += $request->input('jumlah_masuk');
+        $barang->save();
+
         BarangMasuk::create($barang_masuk);
         return redirect('/barangmasuk')->with('success', 'Data berhasil disimpan');
     }
@@ -85,6 +88,15 @@ class BarangMasukController extends Controller
             'barang' => $request->input('barang'),
             'jumlah_masuk' => $request->input('jumlah_masuk'),
         ];
+        $barang = Barang::where('nama_barang', $request->input('barang'))->first();
+
+        // Hitung selisih jumlah_masuk baru dengan jumlah_masuk lama
+        $selisih_jumlah = $request->input('jumlah_masuk') - BarangMasuk::find($id)->jumlah_masuk;
+
+        // Update masuk barang berdasarkan selisih jumlah_masuk
+        $barang->masuk += $selisih_jumlah;
+        $barang->save();
+
         BarangMasuk::where('id', $id)->update($barang_masuk);
         return redirect('/barangmasuk')->with('success', 'data berhasil di update');
     }

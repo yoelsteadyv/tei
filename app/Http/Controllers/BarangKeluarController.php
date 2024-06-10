@@ -52,6 +52,9 @@ class BarangKeluarController extends Controller
             'barang' => $request->input('barang'),
             'jumlah_keluar' => $request->input('jumlah_keluar'),
         ];
+        $barang = Barang::where('nama_barang', $request->input('barang'))->first();
+        $barang->keluar += $request->input('jumlah_keluar');
+        $barang->save();
         // dd($barang_keluar);
         BarangKeluar::create($barang_keluar);
         return redirect('/barangkeluar')->with('success', 'Berhasil simpan data');
@@ -87,6 +90,14 @@ class BarangKeluarController extends Controller
             'barang' => $request->input('barang'),
             'jumlah_keluar' => $request->input('jumlah_keluar'),
         ];
+        $barang = Barang::where('nama_barang', $request->input('barang'))->first();
+
+        // Hitung selisih jumlah_keluar baru dengan jumlah_keluar lama
+        $selisih_jumlah = $request->input('jumlah_keluar') - BarangKeluar::find($id)->jumlah_keluar;
+
+        // Update keluar barang berdasarkan selisih jumlah_keluar
+        $barang->keluar += $selisih_jumlah;
+        $barang->save();
         BarangKeluar::where('id', $id)->update($barang_keluar);
         return redirect('/barangkeluar')->with('success', 'data berhasil di update');
     }

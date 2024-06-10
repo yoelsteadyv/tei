@@ -39,7 +39,7 @@ class BarangController extends Controller
             'nama_barang' => $request->input('nama_barang'),
             'jenis_barang' => $request->input('jenis_barang'),
             'satuan' => $request->input('satuan'),
-            'harga' => $request->input('harga'),
+            // 'harga' => $request->input('harga'),
         ];
         Barang::create($barang);
         return redirect('/barang')->with('success', 'Berhasil simpan data');
@@ -71,7 +71,7 @@ class BarangController extends Controller
             'nama_barang' => $request->input('nama_barang'),
             'jenis_barang' => $request->input('jenis_barang'),
             'satuan' => $request->input('satuan'),
-            'harga' => $request->input('harga'),
+            // 'harga' => $request->input('harga'),
         ];
         Barang::where('id', $id)->update($barang);
         return redirect('/barang')->with('success', 'Berhasil simpan perubahan data');
