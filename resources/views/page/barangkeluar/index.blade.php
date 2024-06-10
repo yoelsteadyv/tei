@@ -12,10 +12,10 @@
 
             <div class="card-body">
                 <div class="d-flex justify-content-end mb-3 me-2">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                        data-bs-target="#defaultSize-tambah"><i class="bi bi-plus"></i>
-                        Tambah Data
-                    </button>
+                    <a href="/barangkeluar/tambah" type="button" id="btn-tambah-data" class="btn btn-outline-success"><i
+                        class="bi bi-plus"></i>
+                    Tambah Data
+                </a>
                 </div>
                 <table class="table table-striped" id="table1">
                     <thead>
@@ -65,7 +65,6 @@
             </div>
         </div>
 
-        @include('page.barangkeluar.tambah')
         @include('page.barangkeluar.edit')
     </section>
 </x-layout>

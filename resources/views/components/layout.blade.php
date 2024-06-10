@@ -94,13 +94,40 @@
     <script src="{{ asset('mazer/assets/static/js/pages/parsley.js') }}"></script>
 
     {{-- sweetalert --}}
-    <script src="{{ asset('mazer/assets/extensions/sweetalert2/sweetalert2.min.js') }}"></script>>
-    <script src="{{ asset('mazer/assets/static/js/pages/sweetalert2.js') }}"></script>>
+    {{-- <script src="{{ asset('mazer/assets/extensions/sweetalert2/sweetalert2.min.js') }}"></script>>
+    <script src="{{ asset('mazer/assets/static/js/pages/sweetalert2.js') }}"></script>> --}}
 
     <!-- Need: Apexcharts -->
     {{-- <script src="{{ asset('mazer/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/dashboard.js') }}"></script> --}}
 
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUrl = window.location.pathname;
+            const menuItems = document.querySelectorAll('.sidebar-item a');
+            const menuItemSub = document.querySelectorAll('.sidebar-item a');
+            const menuHasItems = document.querySelectorAll('.sidebar-item a ul li a');
+
+            menuItems.forEach(item => {
+                const href = item.getAttribute('href');
+
+                // Periksa apakah URL saat ini sama persis dengan href item menu, atau apakah dimulai dengan href item menu (disesuaikan dengan "/barang-masuk")
+                if (currentUrl === href || currentUrl.startsWith(href + '/dashboard') || (href ===
+                        '/maincustomer' && currentUrl.startsWith(href + '/maincustomer'))) {
+                    item.parentElement.classList.add('active');
+                }
+            });
+            menuHasItems.forEach(item => {
+                const href = item.getAttribute('href');
+
+                // Periksa apakah URL saat ini sama persis dengan href item menu, atau apakah dimulai dengan href item menu (disesuaikan dengan "/barang-masuk")
+                if (currentUrl === href || currentUrl.startsWith(href + '/jenisbarang') || (href ===
+                        '/satuanbarang' && currentUrl.startsWith(href + '/satuanbarang'))) {
+                    item.parentElement.classList.add('active');
+                }
+            });
+        });
+    </script> --}}
 </body>
 
 </html>

@@ -21,6 +21,15 @@ class BarangKeluarController extends Controller
         return view("page.barangkeluar.index", compact("barang_keluar", "customer", "barang"));
     }
 
+    public function tambah()
+    {
+        $barang = Barang::query()->latest()->get();
+        $customer = MainCustomer::query()->latest()->get();
+        $barang_keluar = BarangKeluar::query()->latest()->get();
+        // dd($barang);
+        return view("page.barangkeluar.tambah", compact("barang_keluar", "customer", "barang"));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

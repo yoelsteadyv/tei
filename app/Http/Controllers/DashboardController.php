@@ -14,12 +14,17 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data['user'] = User::count();
-        $data['barang'] = Barang::count();
-        $data['customer'] = MainCustomer::count();
-        $data['supplier'] = MainSupplier::count();
-        $data['barangmasuk'] = BarangMasuk::sum('jumlah_masuk');
-        $data['barangkeluar'] = BarangKeluar::sum('jumlah_keluar');
+        $data = [
+            'user' => User::count(),
+            'barang' => Barang::count(),
+            'customer' => MainCustomer::count(),
+            'supplier' => MainSupplier::count(),
+            'barangmasuk' => BarangMasuk::sum('jumlah_masuk'),
+            'barangkeluar' => BarangKeluar::sum('jumlah_keluar'),
+            'isActive' => 'active'
+        ];
+
+
         return view("page.dashboard", $data);
     }
 }

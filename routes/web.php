@@ -107,21 +107,22 @@ Route::get('/maincustomer/{nama_customer}', [MainCustomerController::class, 'get
 
 
 // barangkeluar
-// Route::get('/barangkeluar', function () {
-//     if (Auth::user()->role == 'manager' || Auth::user()->role == 'material') {
-//         return redirect('/dashboard');
-//     }
-//     return app(BarangKeluarController::class)->index();
-// });
-// Route::post('/barangkeluar', [BarangKeluarController::class, 'store']);
-// Route::put('/barangkeluar/{id}', [BarangKeluarController::class, 'update']);
-// Route::delete('/barangkeluar/{id}', [BarangKeluarController::class, 'destroy']);
+Route::get('/barangkeluar', function () {
+    if (Auth::user()->role == 'manager' || Auth::user()->role == 'marketing') {
+        return redirect('/dashboard');
+    }
+    return app(BarangKeluarController::class)->index();
+});
+Route::get('/barangkeluar/tambah', [BarangKeluarController::class, 'tambah']);
+Route::post('/barangkeluar', [BarangKeluarController::class, 'store']);
+Route::put('/barangkeluar/{id}', [BarangKeluarController::class, 'update']);
+Route::delete('/barangkeluar/{id}', [BarangKeluarController::class, 'destroy']);
 
 
 
 // barangmasuk
 Route::get('/barangmasuk', function () {
-    if (Auth::user()->role == 'manager' || Auth::user()->role == 'material') {
+    if (Auth::user()->role == 'manager' || Auth::user()->role == 'marketing') {
         return redirect('/dashboard');
     }
     return app(BarangMasukController::class)->index();
@@ -174,9 +175,9 @@ Route::get('/stok', function () {
 // });
 
 
-Route::get('/barangkeluar', function () {
-    return view('page.barangkeluar.index');
-});
+// Route::get('/barangkeluar', function () {
+//     return view('page.barangkeluar.index');
+// });
 
 // Route::get('/barangmasuk/{id}/edit', function ($id) {
 //     $item = App\Models\BarangMasuk::find($id);

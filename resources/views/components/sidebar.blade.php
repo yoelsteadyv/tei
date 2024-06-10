@@ -46,14 +46,14 @@
 
                     <span class="underline">Menu</span>
                 </li>
-                <li class="sidebar-item ">
+                <li class="sidebar-item {{ Request::is('dashboard') ? 'active' : '' }}">
                     <a href="/dashboard" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
-                    <li class="sidebar-item ">
+                    <li class="sidebar-item  {{ Request::is('user') ? 'active' : '' }} ">
                         <a href="/user" class='sidebar-link'>
                             <i class="bi bi-person"></i>
                             <span>User</span>
@@ -63,8 +63,9 @@
 
 
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'material')
-                    <li class="sidebar-item has-sub">
-                        <a href="#" class='sidebar-link'>
+                    <li
+                        class="sidebar-item has-sub {{ Request::is('jenisbarang', 'satuanbarang', 'barang') ? 'active' : '' }}">
+                        <a href="" class='sidebar-link'>
                             <i class="bi bi-box-seam-fill"></i>
                             <span>Master Barang</span>
                         </a>
@@ -83,7 +84,7 @@
                 @endif
 
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'marketing' || Auth::user()->role == 'manager')
-                    <li class="sidebar-item  ">
+                    <li class="sidebar-item {{ Request::is('mainsupplier') ? 'active' : '' }}">
                         <a href="/mainsupplier" class='sidebar-link'>
                             <i class="bi bi-person-down"></i>
                             <span>Main Supplier</span>
@@ -92,7 +93,7 @@
                 @endif
 
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'marketing' || Auth::user()->role == 'manager')
-                    <li class="sidebar-item  ">
+                    <li class="sidebar-item {{ Request::is('maincustomer') ? 'active' : '' }}">
                         <a href="/maincustomer" class='sidebar-link'>
                             <i class="bi bi-person-up"></i>
                             <span>Main Customer</span>
@@ -101,7 +102,7 @@
                 @endif
 
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'material')
-                    <li class="sidebar-item  ">
+                    <li class="sidebar-item {{ Request::is('barangmasuk') ? 'active' : '' }} ">
                         <a href="/barangmasuk" class='sidebar-link'>
                             <i class="bi bi-arrow-right-square"></i>
                             <span>Barang Masuk</span>
@@ -110,7 +111,7 @@
                 @endif
 
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'material')
-                    <li class="sidebar-item  ">
+                    <li class="sidebar-item {{ Request::is('barangkeluar') ? 'active' : '' }} ">
                         <a href="/barangkeluar" class='sidebar-link'>
                             <i class="bi bi-arrow-left-square"></i>
                             <span>Barang Keluar</span>
@@ -119,7 +120,8 @@
                 @endif
 
 
-                <li class="sidebar-item  has-sub">
+                <li
+                    class="sidebar-item has-sub {{ Request::is('laporanmasuk', 'laporankeluar', 'stok') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-journal-check"></i>
                         <span>Laporan</span>
