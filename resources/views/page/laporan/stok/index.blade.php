@@ -28,10 +28,10 @@
                                 data-bs-target="#defaultSize-tambah"><i class="bi bi-printer"></i>
                                 Print
                             </button>
-                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                data-bs-target="#defaultSize-tambah"><i class="bi bi-filetype-pdf"></i>
+                            <a href="{{ url('/stok/pdf') }}?export=pdf" type="button" class="btn btn-outline-danger"
+                                target="_blank"><i class="bi bi-filetype-pdf"></i>
                                 PDF
-                            </button>
+                            </a>
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($datas['barang'] as $item)
+                        @foreach ($datas as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->kode_barang }}</td>

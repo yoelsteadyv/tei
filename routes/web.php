@@ -159,7 +159,9 @@ Route::get('/laporankeluar', function () {
     }
     return app(LapBarangKeluarController::class)->index();
 });
-Route::get('/stok', fn () => app(StokController::class)->index());
+
+Route::get('/stok', [StokController::class, 'index']);
+Route::get('/stok/pdf', [StokController::class, 'pdf']);
 
 
 // Route::get('/laporanmasuk', function () {
